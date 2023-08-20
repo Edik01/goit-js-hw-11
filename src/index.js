@@ -1,12 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import SimpleLightbox from 'simplelightbox';
 import { getData } from './api';
 import { createMarkup } from './markup';
 import 'notiflix/dist/notiflix-3.2.6.min.css';
-
-import 'simplelightbox/dist/simple-lightbox.min.css';
-
-const lightbox = new SimpleLightbox('.gallery a');
 
 let page = 1;
 
@@ -25,7 +20,7 @@ async function onClick() {
     const markup = createMarkup(hits);
 
     addMarkup(markup);
-    lightbox.refresh();
+
     if (page * 40 >= totalHits) {
       btnEl.classList.add('is-hidden');
       Notify.info("We're sorry, but you've reached the end of search results.");
@@ -63,8 +58,6 @@ async function onSubmit(event) {
     const markup = createMarkup(hits);
     clear();
     addMarkup(markup);
-
-    lightbox.refresh();
   } catch (error) {
     onError(error.message);
   }
